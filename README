@@ -3,7 +3,7 @@ interface working correctly.
 
 Your web server needs to be configured to process .php files with PHP (most web servers have this turned on already).
 
-You need to change the path to your galaxyng directory in the file "head.php" -- e.g. /home/NineLives/Games
+You need to change the path to your galaxyng directory in the file "env.php" -- e.g. /home/NineLives/Games
 
 Your web server needs read permissions for this file for each game:
 	$GALAXYNGHOME/data/<gamename>/next_turn
