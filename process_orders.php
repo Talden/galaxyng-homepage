@@ -19,7 +19,15 @@ for ($i = 0; $i < count($orders); $i++) {
 
 fclose($fp);
 
-passthru("@SETHOME@/galaxyng -webcheck < $tmpfname");
+switch ($req_type) {
+ case "forecast":
+   passthru("@SETHOME@/galaxyng -webcheck < $tmpfname");
+   break;
+
+ case "report":
+   passthru("@SETHOME@/galaxyng -webreport < $tmpfname");
+   break;
+}
 
 $command = "rm -f" . $tmpfname;
 system($command);
