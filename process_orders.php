@@ -1,5 +1,4 @@
 <?php
-echo "<html>\n  <head>\n    <title>Forecast</title>\n  </head>\n  <body>\n  <p><pre>\n";
 
 // on my example server I would change @SETHOME@ to /home/gng/Games
 // remember, there are two places to change it in this script
@@ -21,10 +20,12 @@ fclose($fp);
 
 switch ($req_type) {
  case "forecast":
+   echo "<html>\n  <head>\n    <title>Forecast</title>\n  </head>\n  <body>\n  <p><pre>\n";
    passthru("@SETHOME@/galaxyng -webcheck < $tmpfname");
    break;
 
  case "report":
+   echo "<html>\n  <head>\n    <title>Report</title>\n  </head>\n  <body>\n  <p><pre>\n";
    passthru("@SETHOME@/galaxyng -webreport < $tmpfname");
    break;
 }
