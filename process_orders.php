@@ -1,7 +1,9 @@
 <?php
 echo "<html>\n  <head>\n    <title>Forecast</title>\n  </head>\n  <body>\n  <p><pre>\n";
 
-putenv("GALAXYNGHOME=/home/gng/Games");
+// on my example server I would change @SETHOME@ to /home/gng/Games
+// remember, there are two places to change it in this script
+putenv("GALAXYNGHOME=@SETHOME@");
 
 $tmpfname = tempnam("/tmp", "galaxyng");
 
@@ -17,8 +19,10 @@ for ($i = 0; $i < count($orders); $i++) {
 
 fclose($fp);
 
-passthru("/home/gng/Games/galaxyng -webcheck < $tmpfname");
+passthru("@SETHOME@/galaxyng -webcheck < $tmpfname");
 
+$command = "rm -f" . $tmpfname;
+system($command);
 
 echo "\n  </pre></p>";
 
