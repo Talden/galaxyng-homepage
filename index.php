@@ -15,7 +15,7 @@ if ($type and $orders) {
 	$line1 = explode(" ", $orders[0]);
 
 	for ($i = 0; $i < count($orders); $i++) {
-	  $line = rtrim($orders[$i]);
+	  $line = rtrim(str_replace("\\", "", $orders[$i]));
 	  fwrite($fp, $line); 
 	  fwrite($fp, "\n");
 	}
