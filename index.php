@@ -24,12 +24,12 @@ if ($type and $orders) {
 	
 	switch ($type) {
 		case "cmd_orders":
-			$filename=$line1[2] . "_forecast_" . $line1[4] . ".txt";
+			$filename=$line[1] . "_" . $line1[2] . "_forecast_" . $line1[4] . ".txt";
 			header("Content-disposition: attachment; filename=\"$filename\"");
 			passthru("$NGpath/galaxyng -webcheck < $tmpfname | awk 'sub(\"$\", \"\\r\")'");
 		break;
 		case "cmd_report":
-			$filename=$line1[2] . "_report_" . $line1[4] . ".txt";
+			$filename=$line[1] . "_" . $line1[2] . "_report_" . $line1[4] . ".txt";
 			header("Content-disposition: attachment; filename=\"$filename\"");
 			passthru("$NGpath/galaxyng -webreport < $tmpfname | awk 'sub(\"$\", \"\\r\")'");
 		break;
