@@ -1,24 +1,52 @@
 <html>
-<head>
-  <title>GalaxyNG Web Interface</title>
-</head>
 <body>
-  <p>This is a test area for the new and under construction web interface to
-GalaxyNG.<p>
-  <p>Please type or paste your orders into the text box and press [Submit].</p>
+	
+<?php if ($type and $orders) {  
 
-<form action="process_orders.php" method="post">
-  <table>
-    <tr><td colspan="2"><textarea name="orders" rows="30" cols="80"></textarea></td>
-    </tr>
-    <tr><td><input type="radio" name="req_type" value="forecast" checked>Forecast</td>
-        <td><input type="radio" name="req_type" value="report">Report</td>
-    </tr>
-    <tr><td><input type="submit" value="Submit"></td>
-        <td><input type="reset"></td>
-    </tr>
-  </table>
-</form>
-<p>For testing, use the Game webgame, the player race_1 and the password P272547400</p>
+// Change the path to your galaxyng home directory on the next line.
+	putenv("GALAXYNGHOME=/home/user/Games");
+
+	$tmpfname = tempnam("/tmp", "galaxyng");
+	
+	$fp = fopen($tmpfname, "w"); 
+	
+	$orders = explode("\n", $_POST["orders"]);
+	
+	for ($i = 0; $i < count($orders); $i++) {
+	  $line = rtrim($orders[$i]);
+	  fwrite($fp, $line); 
+	  fwrite($fp, "\n");
+	}
+	
+	fclose($fp);
+	
+	echo "<pre>\n";
+	
+	switch ($type) {
+		case "order":
+// Change the path to your galaxyng home directory on the next line.
+			passthru("/home/user/Games/galaxyng -webcheck < $tmpfname");
+		break;
+		case "report":
+// Change the path to your galaxyng home directory on the next line.
+			passthru("/home/user/Games/galaxyng -webreport < $tmpfname");
+		break;
+	}
+	
+	$command = "rm -f" . $tmpfname;
+	system($command);
+	
+	echo "\n</pre></p>";
+
+} else { ?>
+
+	<form action="<?php echo $PHP_SELF; ?>" method="post">
+	<p><input type="radio" name="type" value="order" checked>Order <input type="radio" name="type" value="report"> Report
+	<br/><textarea name="orders" rows="10" cols="80"></textarea>
+	<br/><input type="submit" value="Submit"> <input type="reset"></p>
+	</form>
+
+<?php } ?>
+
 </body>
 </html>
