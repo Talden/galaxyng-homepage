@@ -1,17 +1,19 @@
 There are a few things that you need to do in order to get the web
 interface working correctly.
 
-First, the directories and files need to have the correct permissions:
+Your web server needs to be configured to process .php files with PHP (most web servers have this turned on already).
 
-	chmod 666 $GALAXYNGHOME/data/next_turn
-	chmod a+w $GALAXYNGHOME/data
-	chmod a+w $GALAXYNGHOME/forecasts
-	chmod a+w $GALAXYNGHOME/orders
-	chmod a+w $GALAXYNGHOME/reports
-	chmod a+w $GALAXYNGHOME/statistics
+You need to change the path to your galaxyng directory in the file "head.php" -- e.g. /home/NineLives/Games
 
-You need to change the path to your galaxyng directory in index.html.
-For example:
-	/home/user/Games
+Your web server needs read permissions for this file for each game:
+	$GALAXYNGHOME/data/<gamename>/next_turn
 
-You might need to change the name of index.html to index.php.
+Your web server needs read/write permissions for this directory and all its subdirectories:
+	$GALAXYNGHOME/orders
+
+Your web server needs read/write permissions for this file:
+	$GALAXYNGHOME/log/orders_processed.txt
+	
+If you have full logging turned on, your web server might need read/write permissions for these directory and all their subdirectories:
+	$GALAXYNGHOME/statistics
+	$GALAXYNGHOME/forecasts
