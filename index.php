@@ -9,9 +9,6 @@ include "head.php";
 
 if ($type and $orders) {  
 
-// Change the path to your galaxyng home directory on the next line.
-	putenv("GALAXYNGHOME=/home/user/Games");
-
 	$tmpfname = tempnam("/tmp", "galaxyng");
 	
 	$fp = fopen($tmpfname, "w"); 
@@ -26,20 +23,18 @@ if ($type and $orders) {
 	
 	fclose($fp);
 	
-	echo "<pre>\n";
+	echo "<p><pre>\n";
 	
 	switch ($type) {
-		case "order":
-// Change the path to your galaxyng home directory on the next line.
+		case "cmd_orders":
 			passthru("$NGpath/galaxyng -webcheck < $tmpfname");
 		break;
-		case "report":
-// Change the path to your galaxyng home directory on the next line.
+		case "cmd_report":
 			passthru("$NGpath/galaxyng -webreport < $tmpfname");
 		break;
 	}
 	
-	$command = "rm -f" . $tmpfname;
+	$command = "rm -f " . $tmpfname;
 	system($command);
 	
 	echo "\n</pre></p>";
@@ -47,7 +42,7 @@ if ($type and $orders) {
 } else { ?>
 
 	<form action="<?php echo $PHP_SELF; ?>" method="post">
-	<p><input type="radio" name="type" value="order" checked>Order <input type="radio" name="type" value="report"> Report
+	<p><input type="radio" name="type" value="cmd_orders" checked>Orders <input type="radio" name="type" value="cmd_report"> Report
 	<br/><textarea name="orders" rows="10" cols="80"></textarea>
 	<br/><input type="submit" value="Submit"> <input type="reset"></p>
 	</form>
