@@ -3,16 +3,15 @@ interface working correctly.
 
 First, the directories and files need to have the correct permissions:
 
-chmod 666 $GALAXYNGHOME/data/next_turn
-chmod a+w $GALAXYNGHOME/data
-chmod a+w $GALAXYNGHOME/forecasts
-chmod a+w $GALAXYNGHOME/orders
-chmod a+w $GALAXYNGHOME/reports
-chmod a+w $GALAXYNGHOME/statistics
+	chmod 666 $GALAXYNGHOME/data/next_turn
+	chmod a+w $GALAXYNGHOME/data
+	chmod a+w $GALAXYNGHOME/forecasts
+	chmod a+w $GALAXYNGHOME/orders
+	chmod a+w $GALAXYNGHOME/reports
+	chmod a+w $GALAXYNGHOME/statistics
 
+You need to change the path to your galaxyng directory in index.html.
+For example:
+	/home/user/Games
 
-in process_orders.php you need to change the @SETHOME@ to the path to
-your galaxyng installation directory. For example, on my test server I
-would change @SETHOME@ to /home/gng/Games
-
-
+You might need to change the name of index.html to index.php.
