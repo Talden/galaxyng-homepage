@@ -1,0 +1,24 @@
+<html>
+<head>
+  <title>GalaxyNG Web Interface</title>
+</head>
+<body>
+  <p>This is a test area for the new and under construction web interface to
+GalaxyNG.<p>
+  <p>Please type or paste your orders into the text box and press [Submit].</p>
+
+<form action="process_orders.php" method="post">
+  <table>
+    <tr><td colspan="2"><textarea name="orders" rows="30" cols="80"></textarea></td>
+    </tr>
+    <tr><td><input type="radio" name="req_type" value="orders" checked>Orders</td>
+        <td><input type="radio" name="req_type" value="report">Report</td>
+    </tr>
+    <tr><td><input type="submit" value="Submit"></td>
+        <td><input type="reset"></td>
+    </tr>
+  </table>
+</form>
+<p>For testing, use the Game webgame, the player race_1 and the password P2024236924</p>
+</body>
+</html>
