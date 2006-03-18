@@ -12,7 +12,7 @@ if ($type and $orders) {
 	
 	$orders = explode("\n", $_POST["orders"]);
 	
-	$line1 = explode(" ", $orders[0]);
+	$line1 = preg_split("[\s]", $orders[0], -1, PREG_SPLIT_NO_EMPTY);
 
 	for ($i = 0; $i < count($orders); $i++) {
 	  $line = rtrim(str_replace("\\", "", $orders[$i]));
